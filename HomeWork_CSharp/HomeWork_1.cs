@@ -101,12 +101,12 @@ namespace HomeWork_CSharp
             //ДЗ 4.Даны 2 массива размерности M и N соответственно.
             //Необходимо переписать в третий массив общие элементы
             //первых двух массивов без повторений.
-            /*
+            
             Console.WriteLine("------HomeWork_4------");
             Console.WriteLine();
             int[] arr1, arr2;
-            int[] arr1WithoutRepetitions, finalArr;
-            int M, N;
+            int[] intermediateArr, finalArr;
+            int M, N, L;
             Console.Write("Введите размер первого массива: ");
             M = Convert.ToInt32(Console.ReadLine());
             Console.Write("Введите размер второго массива: ");
@@ -119,29 +119,44 @@ namespace HomeWork_CSharp
             Console.Write("Второй массив: ");
             RandomArray(arr2);
             PrintArray(arr2);
-            bool flag = true;
-            arr1WithoutRepetitions = new int[NumberOfUniqueNumbersInArr(arr1)];
-            Console.WriteLine(NumberOfUniqueNumbersInArr(arr1));
-            /*counter = 0;
+            if (M <= N) L = N;
+            else  L = M;
+            intermediateArr = new int[L];
+            counter = 0;
+            bool flag=false;
             for (int i = 0; i < M; i++)
-            {   
-                for (int j = 0; j < i; j++)
+            {
+                for (int j = 0; j < N; j++)
                 {
-                    if (arr1[i] == arr1[j])
-                    { 
+                    if (arr1[i] == arr2[j]) 
+                    {
+                        for (int k = 0; k < L; k++)
+                        {
+                            if (intermediateArr[k] == arr2[j])
+                            {
+                                flag=true;
+                            }
+                        }
+                        if (flag == false)
+                        {
+                            intermediateArr[counter] = arr2[j];
+                            counter++;
+                        }
                         flag = false;
-                        break;
                     }
-                    flag = true;
-                }
-                if (flag)
-                {
-                    arr1WithoutRepetitions[counter] = arr1[i];
-                    counter++;
                 }
             }
-            PrintArray(arr1WithoutRepetitions);*/
+            finalArr = new int[counter];
+            for (int i = 0; i < finalArr.Length; i++)
+            {
+                finalArr[i] = intermediateArr[i];
+            }
+            Console.Write("Итоговый массив: ");
+            PrintArray(finalArr);
+            Console.WriteLine();
         }
+           
+        
         static void RandomArray(int[] array)
         {
             Random random = new Random();
@@ -158,26 +173,6 @@ namespace HomeWork_CSharp
             }
             Console.WriteLine();
         }
-        static int NumberOfUniqueNumbersInArr(int[] array)
-        {
-            int max = array.Max();
-            int min = array.Min();
-            int numberOfUniqueNumbers = 0;
-            int[] arrOfFlags = new int[max - min + 1];
-            for (int i = 0; i < arrOfFlags.Length; i++)
-            {
-                for (int j = 0; j < array.Length; i++)
-                {
-                    if (arrOfFlags[array[j] - min] == 0) arrOfFlags[array[j] - min] += 1;
-                }
-            }
-            for (int i = 0; i < arrOfFlags.Length; i++)
-            {
-                numberOfUniqueNumbers += arrOfFlags[i];
-            }
-            return max;
-        }
-
-    
+        
     }
 }
