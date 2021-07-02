@@ -181,8 +181,25 @@ namespace HomeWork_CSharp
 
             Console.WriteLine("------HomeWork_6------");
             Console.WriteLine();
-
-
+            Console.Write("Введите строку: ");
+            originalText = Console.ReadLine();
+            char[] symbolsOfOriginalText = originalText.ToCharArray();
+            counter = 0;
+            bool SpaceFlag = false;
+            foreach (char sym in symbolsOfOriginalText)
+            {    
+                if ((sym != ' ') && (SpaceFlag == false))
+                {
+                    SpaceFlag = true;
+                    counter++;
+                }
+                if ((sym == ' ') && (SpaceFlag == true))
+                {
+                    SpaceFlag = false;
+                }
+            }
+            Console.WriteLine($"Количество слов во введенном предложении равно {counter}");
+            Console.WriteLine();
 
         }
            
