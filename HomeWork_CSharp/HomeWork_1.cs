@@ -154,6 +154,36 @@ namespace HomeWork_CSharp
             Console.Write("Итоговый массив: ");
             PrintArray(finalArr);
             Console.WriteLine();
+
+            //ДЗ 5.Пользователь вводит строку.
+            //Проверить, является ли эта строка палиндромом.
+            //Палиндромом называется строка,
+            //которая одинаково читается слева направо и справа налево.
+
+            Console.WriteLine("------HomeWork_5------");
+            Console.WriteLine();
+            char[] elements=new char[] {' ','.',',',';',':','!','?','-','(',')','"'};
+            Console.Write("Введите строку: ");
+            string originalText = Console.ReadLine();
+            string copyText = originalText.ToLower();
+            foreach (char sym in elements)
+            {
+                copyText = copyText.Replace(sym.ToString(), "");
+            }
+            var reverseText = string.Concat(copyText.Reverse());
+                if (copyText.Equals(reverseText))
+                Console.WriteLine("Строка палиндром!");
+            else
+                Console.WriteLine("Строка не палиндром!");
+            Console.WriteLine();
+
+            //ДЗ 6.Подсчитать количество слов во введенном предложении.
+
+            Console.WriteLine("------HomeWork_6------");
+            Console.WriteLine();
+
+
+
         }
            
         
